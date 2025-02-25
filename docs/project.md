@@ -43,6 +43,9 @@ Regardless of your operating system, the string `Hello, world!` should print to 
 * After compiling successfully, Rust outputs a binary executable.
 * Rust is an ahead-of-time compiled language, meaning you can compile a program and give the executable to someone else, and they can run it even without having Rust installed.
 
+
+---
+
 # Hello, Cargo!
 
 Cargo is Rust’s build system and package manager. 
@@ -115,3 +118,24 @@ You can run the executable with this command:
 If all goes well, `Hello, world!` should print to the terminal.
 
 * Running `cargo build` for the first time also causes Cargo to create a new file at the top level: `Cargo.lock`. This file keeps track of the exact versions of dependencies in your project. This project doesn’t have dependencies, so the file is a bit sparse. You won’t ever need to change this file manually; Cargo manages its contents for you.
+
+We can also use `cargo run` to compile the code and then run the resultant executable all in one command:
+
+```sh
+cargo run
+```
+
+* Notice that this time we didn’t see output indicating that Cargo was compiling `hello_cargo`. Cargo figured out that the files hadn’t changed, so it didn’t rebuild but just ran the binary.
+
+Cargo also provides a command called `cargo check`. This command quickly checks your code to make sure it compiles but doesn’t produce an executable:
+
+```sh
+cargo check
+```
+
+* `cargo check` is much faster than `cargo build` because it skips the step of producing an executable. Run `cargo check` periodically while writing the program to make sure it compiles. Then run `cargo build` when you're ready to use the executable.
+
+## Building for Release
+
+When your project is finally ready for release, you can use `cargo build --release` to compile it with optimizations.
+This command will create an executable in *target/release* instead of *target/debug*.
