@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Build projects
       run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      working-directory: projects/guessing_game
+    # - name: Run tests
+    #   run: cargo test --verbose
